@@ -60,7 +60,7 @@ A aplicação está publicada no Railway. A stack de desenvolvimento e as tecnol
 | Componente | Informação |
 |---|---|
 | Plataforma | Aplicação web interativa |
-| Hospedagem | Railway: https://railway.com/ |
+| Hospedagem | RAiLway: https://railway.com/ |
 | Interface | Experiência gamificada de aprendizagem |
 | Linguagens e frameworks | HTML5, CSS3, JavaScript, SQL, Node.js... |
 | Banco de dados | SQLite |
