@@ -1,32 +1,114 @@
-# EquaGuard com banco de dados
+# ⚡ EquaGuard — Escape Room de Cibersegurança
 
-Execute `INICIAR-EQUAGUARD.cmd` ou, nesta pasta, `node server.cjs`. Requer Node.js 24 ou superior; não precisa instalar pacotes. Abra http://127.0.0.1:3000. A partir desta versão, abrir o HTML diretamente não conecta o banco nem valida o login.
+> **A segurança começa com uma decisão. Você está preparado para impedir o próximo ataque?**
 
-## Acesso ao painel
+O **EquaGuard** é uma plataforma interativa de conscientização em cibersegurança desenvolvida no contexto do desafio EQUAGUARD. Por meio de uma experiência gamificada, os participantes enfrentam situações inspiradas em riscos do cotidiano corporativo, aprendem a reconhecer ameaças digitais e praticam decisões mais seguras.
 
-Usuário inicial: `seguranca`. Na primeira inicialização, uma senha aleatória aparece no terminal uma única vez. Guarde-a e use **Alterar minha senha**, no painel, para definir outra. A senha antiga de demonstração foi removida. Se a instalação já foi inicializada, a senha existente é preservada. Para redefinir, pare o servidor e execute `node server.cjs --reset-admin`; as sessões administrativas serão revogadas e uma nova senha aparecerá no terminal. É possível fornecer `EG_ADMIN_PASSWORD` na primeira inicialização, com pelo menos 12 caracteres; ela não é usada para sobrescrever instalações existentes.
+A missão é impedir que o personagem **Hacker Apagão** comprometa a rede do Grupo Equatorial, transformando o aprendizado sobre segurança da informação em uma experiência prática, dinâmica e envolvente.
 
-Senhas ficam como hash scrypt com salt aleatório. Sessões são cookies HttpOnly e SameSite=Strict, com tokens aleatórios cujo hash fica no banco. O login expira em 30 minutos, o logout revoga a sessão e a troca de senha revoga todos os acessos administrativos. Tentativas inválidas são limitadas por endereço e registradas sem senha. O servidor exige sessão para consultar resultados; arquivos do banco, código do servidor e backups não são publicados.
+🌐 **Acesse a plataforma:** [EquaGuard — Produção](https://equaguard-equatorial-production.up.railway.app/)
 
-## O que é salvo
+---
 
-O arquivo `data/equaguard.sqlite` contém usuários administrativos, participantes, sessões, resultados, progresso por módulo e auditoria de login. Cada resultado mantém pontos, acertos, erros, escolhas e perfil no momento da partida. Um evento reenviado não gera registro duplicado. Os dados sobrevivem ao fechamento e reinício do servidor.
+## 🎯 Objetivo do projeto
 
-Participantes continuam entrando por nome e área, sem senha individual. Um cookie permite retomar o participante neste navegador por até 30 dias. **Começar** cria outro participante; nomes iguais não juntam históricos. A consulta consolidada pertence ao painel da Segurança. Contas individuais de jogadores em outros dispositivos não fazem parte deste fluxo.
+Promover a conscientização sobre segurança da informação por meio de simulações interativas que aproximam os colaboradores de situações reais de risco, incentivando comportamentos seguros e a prevenção de incidentes cibernéticos.
 
-O servidor valida módulos, pré-requisitos, identidade e limites de pontuação. O jogo continua calculando as escolhas no navegador; não é uma plataforma de avaliação com proteção contra manipulação do cliente. Progresso é confirmado no banco ao receber o resultado; o cache local libera a interface enquanto a fila é enviada. Falhas de rede mantêm uma fila local, reenviada ao retornar a conexão ou reabrir o jogo.
+## 🚨 O problema
 
-O painel considera a última execução de cada participante por módulo. Todas as execuções ficam no banco. O botão Atualizar consulta os resultados do servidor e Exportar CSV verifica a sessão antes de gerar o arquivo.
+Muitos incidentes de segurança começam com pequenas ações do dia a dia, como clicar em links suspeitos, compartilhar códigos de verificação ou deixar um computador desbloqueado.
 
-## Dados anteriores e operação
+O EquaGuard busca enfrentar esses riscos utilizando uma abordagem prática e educativa, na qual o participante aprende a identificar ameaças, avaliar cenários e escolher a resposta mais segura.
 
-Resultados antigos em localStorage ou Google Sheets não são importados automaticamente, pois não possuem a identidade do novo servidor. São preservados em suas origens. Os novos resultados passam a usar SQLite; não são mais enviados ao antigo endpoint da planilha.
+## ✨ Funcionalidades
 
-Para backup simples, pare o servidor e copie a pasta `data` inteira. Não copie apenas o arquivo principal enquanto ele está aberto: o SQLite usa WAL. Não apague `data` ao atualizar os arquivos do aplicativo. O servidor escuta em 0.0.0.0 e usa a variável PORT quando configurada. Hospedagem para equipe exige HTTPS, armazenamento persistente, configuração de acesso e `EG_COOKIE_SECURE=1` atrás de um servidor HTTPS.
+- **🎮 Aprendizagem gamificada:** missões interativas com situações e decisões de segurança.
+- **🕵️ Phishing e engenharia social:** identificação de e-mails fraudulentos, remetentes suspeitos, links maliciosos e tentativas de manipulação.
+- **🔐 Segurança de senhas e acessos:** boas práticas para proteger credenciais e estações de trabalho.
+- **📱 Simulações do cotidiano corporativo:** cenários que envolvem mensagens suspeitas e solicitações de códigos de verificação.
+- **🏅 Pontuação e reconhecimento:** recompensas e selos associados ao progresso nas missões.
+- **👤 Identificação do participante:** registro de apelido e área de atuação para contextualizar a experiência.
+- **📊 Continuidade da experiência:** opção de continuar uma partida e acompanhar a progressão pelos módulos disponíveis.
+- **🛡️ Segurança operacional:** conteúdo educativo sobre proteção de acessos, dispositivos e informações corporativas.
 
-## Verificação
+## 🧩 Módulos de aprendizagem
 
-Execute `npm test` ou `node --test tests/*.test.cjs`. Os testes usam banco temporário e verificam login, sessão, autorização, persistência após reinício, trilha técnica, deduplicação e troca de senha.
+| Módulo | Tema | Objetivo |
+|---|---|---|
+| 01 | Phishing e Engenharia Social | Reconhecer golpes digitais, mensagens suspeitas e tentativas de manipulação. |
+| 02 | Senhas e Posto de Trabalho | Proteger credenciais, bloquear a tela e manter o ambiente de trabalho seguro. |
+| 03 | Dispositivos Perdidos | Aprender cuidados e respostas diante da perda de dispositivos. |
+| 03 — Técnico | Rede Operacional | Desenvolver consciência sobre os riscos relacionados às redes operacionais. |
+| 04 | Postar nas Redes | Refletir sobre exposição de informações e comportamento nas redes sociais. |
+| 05 | Armadilhas Digitais | Reforçar a identificação e a prevenção de ameaças digitais. |
 
-Referência da API utilizada: [SQLite no Node.js 24](https://nodejs.org/docs/latest-v24.x/api/sqlite.html).
+*Os módulos são liberados progressivamente, conforme a configuração da plataforma.*
+
+## 🕹️ Como funciona
+
+1. **Identifique-se:** informe seu apelido e selecione sua área de atuação.
+2. **Escolha seu perfil:** conheça os personagens e selecione aquele que representa melhor sua rotina.
+3. **Entre na missão:** investigue situações apresentadas pelo Hacker Apagão.
+4. **Analise as evidências:** observe mensagens, remetentes, links e outros sinais de risco.
+5. **Tome uma decisão:** selecione a atitude mais segura para cada cenário.
+6. **Aprenda com o resultado:** compreenda as consequências das escolhas e avance na experiência.
+
+## 🛠️ Tecnologias
+
+A aplicação está publicada no Railway. A stack de desenvolvimento e as tecnologias utilizadas internamente ainda precisam ser confirmadas a partir do código-fonte do projeto.
+
+| Componente | Informação |
+|---|---|
+| Plataforma | Aplicação web interativa |
+| Hospedagem | Railway |
+| Interface | Experiência gamificada de aprendizagem |
+| Linguagens e frameworks | A confirmar |
+| Banco de dados | A confirmar |
+| Integrações e serviços externos | A confirmar |
+
+## 🚀 Acesse e experimente
+
+Não é necessário instalar o projeto para experimentar a versão publicada.
+
+1. Acesse [equaguard-equatorial-production.up.railway.app](https://equaguard-equatorial-production.up.railway.app/).
+2. Clique em **Começar**.
+3. Informe os dados solicitados pela plataforma.
+4. Escolha seu perfil e inicie a missão.
+5. Complete os desafios disponíveis e revise as orientações de segurança.
+
+## 🔒 Privacidade e segurança
+
+A plataforma informa que utiliza o apelido, a área de atuação e as respostas dos participantes para apoiar a identificação de necessidades de treinamento, com análise dos resultados por área, e não individualmente.
+
+O tratamento efetivo dos dados, os prazos de retenção, os mecanismos de armazenamento e os controles de acesso devem ser verificados na implementação e na política de privacidade do projeto.
+
+## 🌱 Evolução do projeto
+
+Possíveis melhorias para versões futuras:
+
+- [ ] Expandir as missões e os cenários interativos.
+- [ ] Criar um painel de indicadores agregados por área.
+- [ ] Acompanhar a evolução do aprendizado ao longo do tempo.
+- [ ] Implementar novos cenários relacionados à segurança operacional.
+- [ ] Melhorar a acessibilidade e a experiência em dispositivos móveis.
+- [ ] Validar controles de privacidade, armazenamento e proteção dos dados.
+- [ ] Adicionar relatórios para apoiar o planejamento de treinamentos.
+
+*Os itens acima são sugestões de evolução, não funcionalidades confirmadas da versão atual.*
+
+## 💡 Diferencial
+
+O EquaGuard transforma a conscientização em cibersegurança em uma experiência de participação ativa. Em vez de apenas apresentar regras, a plataforma coloca o usuário diante de situações que exigem atenção, análise e tomada de decisão.
+
+**A proposta é simples: aprender fazendo, reconhecer os riscos e agir com mais segurança.**
+
+---
+
+## 👥 Projeto
+
+**EquaGuard — Desafio EQUAGUARD**
+
+Plataforma de conscientização em cibersegurança com aprendizagem interativa e gamificação.
+
+🔗 **Produção:** https://equaguard-equatorial-production.up.railway.app/
 
