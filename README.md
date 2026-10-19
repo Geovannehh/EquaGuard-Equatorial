@@ -6,7 +6,7 @@ O **EquaGuard** é uma plataforma interativa de conscientização em cibersegura
 
 A missão é impedir que o personagem **Hacker Apagão** comprometa a rede do Grupo Equatorial, transformando o aprendizado sobre segurança da informação em uma experiência prática, dinâmica e envolvente.
 
-🌐 **Acesse a plataforma:** [EquaGuard — Produção](https://equaguard-equatorial-production.up.railway.app/)
+🌐 **Acesse a plataforma:** [EquaGuard-Produção](https://equaguard-equatorial-production.up.railway.app/)
 
 ---
 
@@ -38,7 +38,7 @@ O EquaGuard busca enfrentar esses riscos utilizando uma abordagem prática e edu
 | 01 | Phishing e Engenharia Social | Reconhecer golpes digitais, mensagens suspeitas e tentativas de manipulação. |
 | 02 | Senhas e Posto de Trabalho | Proteger credenciais, bloquear a tela e manter o ambiente de trabalho seguro. |
 | 03 | Dispositivos Perdidos | Aprender cuidados e respostas diante da perda de dispositivos. |
-| 03 — Técnico | Rede Operacional | Desenvolver consciência sobre os riscos relacionados às redes operacionais. |
+| 03 - Técnico | Rede Operacional | Desenvolver consciência sobre os riscos relacionados às redes operacionais. |
 | 04 | Postar nas Redes | Refletir sobre exposição de informações e comportamento nas redes sociais. |
 | 05 | Armadilhas Digitais | Reforçar a identificação e a prevenção de ameaças digitais. |
 
@@ -106,7 +106,7 @@ O EquaGuard transforma a conscientização em cibersegurança em uma experiênci
 
 ## 👥 Projeto
 
-**EquaGuard — Desafio EQUAGUARD**
+**EquaGuard - Desafio EQUAGUARD**
 
 Plataforma de conscientização em cibersegurança com aprendizagem interativa e gamificação.
 
