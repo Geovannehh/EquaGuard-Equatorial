@@ -60,11 +60,11 @@ A aplicação está publicada no Railway. A stack de desenvolvimento e as tecnol
 | Componente | Informação |
 |---|---|
 | Plataforma | Aplicação web interativa |
-| Hospedagem | Railway |
+| Hospedagem | Railway: https://railway.com/ |
 | Interface | Experiência gamificada de aprendizagem |
-| Linguagens e frameworks | A confirmar |
-| Banco de dados | A confirmar |
-| Integrações e serviços externos | A confirmar |
+| Linguagens e frameworks | HTML5, CSS3, JavaScript, SQL, Node.js... |
+| Banco de dados | SQLite |
+| Integrações e serviços externos | Google Fonts, para carregar as fontes Karla e Special Elite |
 
 ## 🚀 Acesse e experimente
 
